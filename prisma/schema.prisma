@@ -5,9 +5,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-  extensions = [postgis]
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")   // Uses port 6543 for the app
 }
 
 // ==========================================
@@ -27,7 +26,7 @@ model PropertyPro {
   country             String         @default("Nigeria")
   latitude            Float?
   longitude           Float?
-  location            Unsupported("geometry(Point, 4326)")?
+  // location            Unsupported("geometry(Point, 4326)")?
 
 
   // Media
@@ -94,7 +93,7 @@ model Jiji {
   country             String         @default("Nigeria")
   latitude            Float?
   longitude           Float?
-  location            Unsupported("geometry(Point, 4326)")?
+  // location            Unsupported("geometry(Point, 4326)")?
 
 
   // Media

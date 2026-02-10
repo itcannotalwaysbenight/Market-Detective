@@ -129,13 +129,6 @@ async def save_to_db(db, property_data, lat, lon):
             }
         )
         
-        # Now update the geometry field if we have lat/lon
-        if lat is not None and lon is not None:
-            await db.execute_raw(
-                'UPDATE "PropertyPro" SET location = ST_SetSRID(ST_Point($1, $2), 4326) WHERE id = $3',
-                lon, lat, prop.id
-            )
-        
         return prop
     except Exception as e:
         logger.error(f"Failed to save to DB (URL: {property_data.get('URL')}): {e}")
