@@ -1,5 +1,5 @@
 {
-    "last_page": 9,
+    "last_page": 10,
     "scraped_pages": [
         1,
         2,
@@ -9,8 +9,9 @@
         6,
         7,
         8,
-        9
+        9,
+        10
     ],
-    "total_records": 198,
-    "last_updated": "2026-02-10T14:22:40.528528"
+    "total_records": 220,
+    "last_updated": "2026-02-10T14:24:16.741973"
 }
