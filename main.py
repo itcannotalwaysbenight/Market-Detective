@@ -80,7 +80,7 @@ async def save_to_db(db, property_data, lat, lon):
             logger.warning("Property missing URL, skipping...")
             return None
 
-        price_in_cents = int(property_data.get('Price', 0)) * 100
+        sale_price = int(property_data.get('Price', 0))
         beds = int(property_data.get('Bedrooms', 0))
         baths = int(property_data.get('Baths', 0))
         features = json.loads(property_data.get('Features', '[]'))
@@ -103,7 +103,7 @@ async def save_to_db(db, property_data, lat, lon):
                     'state': property_data.get('State', 'Unknown'),
                     'latitude': lat,
                     'longitude': lon,
-                    'priceMonthly': price_in_cents,
+                    'price': sale_price,
                     'beds': beds,
                     'baths': baths,
                     'amenities': features,
@@ -118,7 +118,7 @@ async def save_to_db(db, property_data, lat, lon):
                     'state': property_data.get('State', 'Unknown'),
                     'latitude': lat,
                     'longitude': lon,
-                    'priceMonthly': price_in_cents,
+                    'price': sale_price,
                     'beds': beds,
                     'baths': baths,
                     'amenities': features,

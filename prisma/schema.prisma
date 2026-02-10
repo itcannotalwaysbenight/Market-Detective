@@ -35,7 +35,7 @@ model PropertyPro {
   threeDModel         String?
 
   // Property Details
-  priceMonthly        Int            // In cents
+  price               BigInt
   beds                Int
   baths               Int
   sqft                Int?
@@ -68,8 +68,13 @@ model PropertyPro {
   createdAt           DateTime       @default(now())
   updatedAt           DateTime       @updatedAt
 
+  // Relations
+  swipes              Swipe[]
+  matches             Match[]
+  favorites           Favorite[]
+
   @@index([city])
-  @@index([priceMonthly])
+  @@index([price])
   @@index([beds])
   @@index([latitude, longitude])
   @@index([publishedAt])
@@ -102,7 +107,7 @@ model Jiji {
   threeDModel         String?
 
   // Property Details
-  priceMonthly        Int            // In cents
+  price               BigInt
   beds                Int
   baths               Int
   sqft                Int?
@@ -135,10 +140,41 @@ model Jiji {
   createdAt           DateTime       @default(now())
   updatedAt           DateTime       @updatedAt
 
+  // Relations
+  swipes              Swipe[]
+  matches             Match[]
+  favorites           Favorite[]
 
   @@index([city])
-  @@index([priceMonthly])
+  @@index([price])
   @@index([beds])
   @@index([latitude, longitude])
   @@index([publishedAt])
+}
+
+model Swipe {
+  id            String      @id @default(cuid())
+  propertyPro   PropertyPro? @relation(fields: [propertyProId], references: [id])
+  propertyProId String?
+  jiji          Jiji?        @relation(fields: [jijiId], references: [id])
+  jijiId        String?
+  createdAt     DateTime     @default(now())
+}
+
+model Match {
+  id            String      @id @default(cuid())
+  propertyPro   PropertyPro? @relation(fields: [propertyProId], references: [id])
+  propertyProId String?
+  jiji          Jiji?        @relation(fields: [jijiId], references: [id])
+  jijiId        String?
+  createdAt     DateTime     @default(now())
+}
+
+model Favorite {
+  id            String      @id @default(cuid())
+  propertyPro   PropertyPro? @relation(fields: [propertyProId], references: [id])
+  propertyProId String?
+  jiji          Jiji?        @relation(fields: [jijiId], references: [id])
+  jijiId        String?
+  createdAt     DateTime     @default(now())
 }
