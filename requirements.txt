@@ -2,3 +2,6 @@ pandas
 beautifulsoup4
 matplotlib
 requests
+prisma
+geopy
+python-dotenv

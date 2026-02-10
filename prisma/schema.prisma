@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["postgresqlExtensions"]
+  provider             = "prisma-client-py"
+  recursive_type_depth = 5
+  previewFeatures      = ["postgresqlExtensions"]
 }
 
 datasource db {
@@ -17,6 +18,7 @@ model PropertyPro {
 
   // Basic Info
   title               String
+  url                 String         @unique
   description         String?
   address             String
   addressNumber       String?
@@ -66,11 +68,6 @@ model PropertyPro {
 
   createdAt           DateTime       @default(now())
   updatedAt           DateTime       @updatedAt
-
-  // Relations
-  swipes              Swipe[]
-  matches             Match[]
-  favorites           Favorite[]
 
   @@index([city])
   @@index([priceMonthly])
@@ -88,6 +85,7 @@ model Jiji {
 
   // Basic Info
   title               String
+  url                 String         @unique
   description         String?
   address             String
   addressNumber       String?
@@ -138,10 +136,6 @@ model Jiji {
   createdAt           DateTime       @default(now())
   updatedAt           DateTime       @updatedAt
 
-  // Relations
-  swipes              Swipe[]
-  matches             Match[]
-  favorites           Favorite[]
 
   @@index([city])
   @@index([priceMonthly])
